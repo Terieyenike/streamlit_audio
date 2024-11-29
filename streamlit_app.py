@@ -1,10 +1,9 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
-
-from openai import OpenAI
 
 api_key = os.getenv('OPENAI_API_KEY')
 
@@ -26,27 +25,35 @@ if audio_value:
     file = audio_value
   )
 
-  st.write(transcript.text)
-
-  # Save the transcript to a .txt file
-  if st.button("Save transcription"):
-    txt_file = "transcription.txt"
-
-    with open(txt_file, mode='w', encoding='utf-8') as file:
-      file.write(f"Transcription:\n{transcript.text}\n")
-      file.write("-" * 50 + "\n")
-
-    st.success(f"Transcript saved to {txt_file}")
+  transcript_text = transcript.text
+  st.write(transcript_text)
 
 
-st.subheader("Translation with Whisper")
+  txt_file = "transcription.txt"
 
-audio_translate = st.audio_input("record a voice message to translate")
+  # Initialize session state for download confirmation
+  if "downloaded" not in st.session_state:
+        st.session_state.downloaded = False
 
-if audio_translate:
-  translate = client.audio.translations.create(
-    model="whisper-1",
-    file=audio_translate
-  )
+    # Download button
+  if st.download_button(
+       label="Download Transcription",
+       file_name="transcription.txt",data=transcript_text,
+  ):
+       st.session_state.downloaded = True
 
-  st.write(translate.text)
+    # Show success message after download
+  if st.session_state.downloaded:
+        st.success("Transcription file downloaded successfully!")
+
+
+# # translate audio
+# audio_translate = st.audio_input("record a voice message to translate")
+
+# if audio_translate:
+#   translate = client.audio.translations.create(
+#     model="whisper-1",
+#     file=audio_translate
+#   )
+
+#   st.write(translate.text)
