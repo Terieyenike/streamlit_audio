@@ -47,13 +47,13 @@ if audio_value:
         st.success("Transcription file downloaded successfully!")
 
 
-# # translate audio
-# audio_translate = st.audio_input("record a voice message to translate")
+# translate audio
+audio_translate = st.audio_input("record a voice message to translate")
 
-# if audio_translate:
-#   translate = client.audio.translations.create(
-#     model="whisper-1",
-#     file=audio_translate
-#   )
+if audio_translate:
+  translate = client.audio.translations.create(
+    model="whisper-1",
+    file=audio_translate
+  )
 
-#   st.write(translate.text)
+  st.write(translate.text)
