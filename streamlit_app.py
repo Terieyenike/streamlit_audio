@@ -48,6 +48,8 @@ if audio_value:
 
 
 # translate audio
+st.header("Translation with Whisper", divider="gray")
+
 audio_translate = st.audio_input("record a voice message to translate")
 
 if audio_translate:
