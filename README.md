@@ -3,7 +3,8 @@
 ## Project Description
 This project is a Streamlit application that utilizes OpenAI's Whisper model for audio transcription and translation. Users can record voice messages, which the application will transcribe into text or translate into another language.
 
-![saved transcription](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uc37ucs5mldf3e69r6kw.png)
+![downloaded transcription](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/69arvtdfjmtgmfkiogbv.png)
+
 
 ## Features
 - **Audio Transcription**: Record a voice message and get the transcription in text format.
